@@ -1,14 +1,14 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '/ui/pages/page1.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: FlexThemeData.light(
@@ -26,10 +26,7 @@ class MyApp extends StatelessWidget {
         fontFamily: GoogleFonts.notoSans().fontFamily,
       ),
       themeMode: ThemeMode.light,
-      //todo: Implement name routing (initialRoute and getPages parameters)
-      // remove the next line
-      home: Scaffold(body:Center(child: Text('It works!'))), // remove this
-      // remove the last line
+      home: Page1(),
     );
   }
 }

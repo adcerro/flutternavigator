@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class Page3B extends StatelessWidget {
-  Page3B({super.key});
-  final String? name = Get.parameters['name'];
+  final String? name;
+  Page3B({super.key, this.name});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,13 +19,43 @@ class Page3B extends StatelessWidget {
                 'This is a snackbar demo. Click the button below to see it in action.'),
             ElevatedButton(
                 //todo: Implement logic for the Top Snackbar
-                onPressed: () => null,
+                onPressed: () => ScaffoldMessenger.of(context)
+                        .showMaterialBanner(MaterialBanner(
+                      backgroundColor: Colors.transparent,
+                      dividerColor: Colors.transparent,
+                      content: Container(
+                        height: MediaQuery.sizeOf(context).height * 0.1,
+                        decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: MediaQuery.sizeOf(context).width * 0.02,
+                              ),
+                              Text('Hi!\nThis is a snackbar on Top')
+                            ]),
+                      ),
+                      actions: const [SizedBox()],
+                      onVisible: () {
+                        Future.delayed(const Duration(seconds: 3), () {
+                          ScaffoldMessenger.of(context)
+                              .hideCurrentMaterialBanner();
+                        });
+                      },
+                    )),
                 child: const Text('Show Top Snackbar')),
             const SizedBox(height: 20),
             ElevatedButton(
-                onPressed: () => Get.snackbar(
-                    'Hi', 'This is a snackbar on Bottom',
-                    snackPosition: SnackPosition.BOTTOM),
+                onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                        backgroundColor: Colors.black.withOpacity(0.2),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        content:
+                            const Text('Hi!\nThis is a snackbar on Bottom'))),
                 child: const Text('Show Botton Snackbar'))
           ],
         ),

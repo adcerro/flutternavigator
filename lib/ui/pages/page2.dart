@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'page3a.dart';
+import 'page3b.dart';
 
 class Page2 extends StatelessWidget {
-  Page2({super.key});
-  // Obtain the name parameter from the route
-  final String? name = 'some name';
-
+  String name;
+  Page2({super.key, this.name = 'unknown'});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: const SizedBox(),
+        leadingWidth: 0,
         title: Text('Welcome $name!'),
         actions: [
           IconButton(
               //todo: Implement back navigation logic making sure to clean the navigation stack
-              onPressed: () => null,
+              onPressed: () => Navigator.pop(context),
               icon: const Icon(Icons.logout))
         ],
       ),
@@ -33,14 +34,20 @@ class Page2 extends StatelessWidget {
               children: [
                 ElevatedButton(
                   //todo: Implement navigation to page3a sending the name as a parameter
-                  onPressed: () => null,
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Page3A(nam: name))),
                   child: const Text(
                     'Option A',
                   ),
                 ),
                 const SizedBox(width: 20),
                 ElevatedButton(
-                    onPressed: () => Get.toNamed("/page3b/?name=$name"),
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Page3B(name: name))),
                     child: const Text(
                       'Option B',
                     )),

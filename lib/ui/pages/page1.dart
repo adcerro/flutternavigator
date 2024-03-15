@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'page2.dart';
 
 class Page1 extends StatefulWidget {
   const Page1({super.key});
@@ -45,10 +45,14 @@ class _Page1State extends State<Page1> {
                     },
                   ),
                 ),
-                //todo: call name routing here to page2 sending the name as a parameter
                 ElevatedButton(
                     onPressed: () => _formKey.currentState!.validate()
-                        ? print('Hello ${_controller.text}!')
+                        ? Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  Page2(name: _controller.text),
+                            ))
                         : null,
                     child: const Text('Continue'))
               ],

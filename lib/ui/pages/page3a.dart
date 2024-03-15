@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
+String? name;
 
 class Page3A extends StatefulWidget {
-  const Page3A({super.key});
+  Page3A({super.key, String nam = 'unknown'}) {
+    name = nam;
+  }
 
   @override
   State<Page3A> createState() => _Page3AState();
 }
 
 class _Page3AState extends State<Page3A> {
-  final String? name = Get.parameters['name'];
-
   String currentSelection = 'Give me candy';
 
   @override
@@ -28,7 +29,8 @@ class _Page3AState extends State<Page3A> {
             Text(currentSelection, key: const Key('currentSelection')),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () => Get.bottomSheet(
+              onPressed: () => {},
+              /*Get.bottomSheet(
                   backgroundColor: Colors.white,
                   Wrap(
                     children: <Widget>[
@@ -55,7 +57,7 @@ class _Page3AState extends State<Page3A> {
                       ),
                     ],
                   )),
-              key: const Key('elevatedButton'),
+              key: const Key('elevatedButton'),*/
               child: const Text('Show Bottom Sheet modal'),
             ),
             const SizedBox(height: 20),
