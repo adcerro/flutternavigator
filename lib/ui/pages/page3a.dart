@@ -29,35 +29,39 @@ class _Page3AState extends State<Page3A> {
             Text(currentSelection, key: const Key('currentSelection')),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () => {},
-              /*Get.bottomSheet(
-                  backgroundColor: Colors.white,
-                  Wrap(
-                    children: <Widget>[
-                      ListTile(
-                          leading: const Icon(Icons.food_bank),
-                          title: const Text('I like candy'),
-                          key: const Key('likeCandyTile'),
-                          onTap: () {
-                            setState(() {
-                              currentSelection = 'Give me candy';
-                            });
-                            Get.back();
-                          }),
-                      ListTile(
-                        key: const Key('noCandyTile'),
-                        leading: const Icon(Icons.close),
-                        title: const Text('I don´t like candy'),
-                        onTap: () {
-                          setState(() {
-                            currentSelection = 'No, no candy for me';
-                          });
-                          Get.back();
-                        },
-                      ),
-                    ],
-                  )),
-              key: const Key('elevatedButton'),*/
+              onPressed: () => {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return Container(
+                        child: Wrap(
+                          children: <Widget>[
+                            ListTile(
+                                leading: const Icon(Icons.food_bank),
+                                title: const Text('I like candy'),
+                                key: const Key('likeCandyTile'),
+                                onTap: () {
+                                  setState(() {
+                                    currentSelection = 'Give me candy';
+                                  });
+                                  Navigator.pop(context);
+                                }),
+                            ListTile(
+                              key: const Key('noCandyTile'),
+                              leading: const Icon(Icons.close),
+                              title: const Text('I don´t like candy'),
+                              onTap: () {
+                                setState(() {
+                                  currentSelection = 'No, no candy for me';
+                                });
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        ),
+                      );
+                    })
+              },
               child: const Text('Show Bottom Sheet modal'),
             ),
             const SizedBox(height: 20),
